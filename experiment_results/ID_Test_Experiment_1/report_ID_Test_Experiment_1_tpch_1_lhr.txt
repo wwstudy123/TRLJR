@@ -1,0 +1,12 @@
+##### Report for Experiment with ID: Test_Experiment_1 #####
+Description: Just a TPCH Test Experiment
+
+Start:                         2025-05-28 19:48:05.441404
+End:                           2025-05-28 19:48:05.441404
+Duration:                      0:14:46.070157
+
+Start Training:                2025-05-28 19:51:23.878343
+End Training:                  2025-05-28 20:02:51.442858
+Duration Training:             0:11:27.564515
+Moving Average model at step:  16000
+Mean reward model at step:     16000
