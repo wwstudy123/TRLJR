@@ -1,12 +1,64 @@
 ##### Report for Experiment with ID: Test_Experiment_1 #####
 Description: Just a TPCH Test Experiment
 
-Start:                         2025-05-28 19:48:05.441404
-End:                           2025-05-28 19:48:05.441404
-Duration:                      0:14:46.070157
+Start:                         2025-05-28 20:34:02.371314
+End:                           2025-05-28 20:34:02.371314
+Duration:                      0:13:33.792269
 
-Start Training:                2025-05-28 19:51:23.878343
-End Training:                  2025-05-28 20:02:51.442858
-Duration Training:             0:11:27.564515
+Start Training:                2025-05-28 20:35:55.416216
+End Training:                  2025-05-28 20:47:36.057975
+Duration Training:             0:11:40.641759
 Moving Average model at step:  16000
-Mean reward model at step:     16000
+Mean reward model at step:     15000
+Git Hash:                      b'5fe4ce8323eaa0109561078537a451393c4b8a03\n'
+Number of features:            772
+Number of actions:             3376
+
+Unknown query probability: 0.0:
+    Final mean performance test:
+        Final model:               57.04 ([67.02, 48.07, 45.08, 61.64, 52.54, 54.86, 65.67, 52.71, 60.93, 61.92])
+        Moving Average model:      56.82 ([67.02, 48.07, 45.08, 61.64, 52.54, 54.2, 64.79, 52.71, 60.19, 61.92])
+        Moving Average 3 model:    56.90 ([66.99, 48.06, 45.08, 61.62, 52.54, 54.36, 65.32, 52.87, 60.19, 61.92])
+        Best mean reward model:    56.90 ([66.99, 48.06, 45.08, 61.62, 52.54, 54.36, 65.32, 52.87, 60.19, 61.92])
+
+        Budgets:                   [3500, 3500, 1500, 3500, 2500, 8000, 8000, 5000, 500, 1000]
+
+    Final mean performance validation:
+        Final model:               51.26 ([45.75, 54.1, 49.36, 61.41, 54.8, 51.34, 49.99, 53.93, 44.25, 47.7])
+        Moving Average model:      50.51 ([45.75, 54.1, 48.95, 55.07, 54.8, 50.95, 49.6, 53.93, 44.25, 47.7])
+        Moving Average 3 model:    50.36 ([45.75, 54.1, 48.41, 55.07, 54.8, 50.95, 48.71, 53.93, 44.25, 47.68])
+        Best mean reward model:    50.36 ([45.75, 54.1, 48.41, 55.07, 54.8, 50.95, 48.71, 53.93, 44.25, 47.68])
+
+        Budgets:                   [1500, 1500, 6500, 500, 2500, 500, 6500, 1500, 1500, 3500]
+
+
+Overall Test:
+        Final model:               57.04
+        Moving Average model:      56.82
+        Moving Average 3 model:    56.90
+        Best mean reward model:    56.90
+        Extend:                    nan
+        DB2Adv:                    nan
+
+Overall Validation:
+        Final model:               51.26
+        Moving Average model:      50.51
+        Moving Average 3 model:    50.36
+        Best mean reward model:    50.36
+        Extend:                    nan
+        DB2Adv:                    nan
+
+
+Evaluated episodes:            145
+Total steps taken:             15984
+CostEval cache hit ratio:      76.17 (172175 of 226044)
+Cost eval time (% of total):   0:03:08.057528 (26.84%)
+
+
+Used configuration:
+{"id": "Test_Experiment_1", "description": "Just a TPCH Test Experiment", "gym_version": 1, "timesteps": 16000, "database": "tpch_1_lhr", "random_seed": 60, "parallel_environments": 1, "pickle_cost_estimation_caches": false, "action_manager": "MultiColumnIndexActionManager", "observation_manager": "SingleColumnIndexPlanEmbeddingObservationManagerWithCost", "reward_calculator": "RelativeDifferenceRelativeToStorageReward", "max_steps_per_episode": 200, "validation_frequency": 1000, "filter_utilized_columns": false, "max_index_width": 3, "reenable_indexes": false, "result_path": "experiment_results", "workload_embedder": {"type": "PlanEmbedderLSIBOW", "representation_size": 50}, "rl_algorithm": {"algorithm": "PPO2", "stable_baselines_version": 2, "gamma": 0.5, "policy": "MlpPolicy", "model_architecture": {"net_arch": [{"vf": [256, 256], "pi": [256, 256]}]}, "args": {"n_steps": 64}}, "workload": {"benchmark": "TPCH", "path": "./experiment_results/workloads/gen_tpch/train_workloads1.pickle", "scale_factor": 1, "size": 14, "varying_frequencies": true, "training_instances": 10000, "validation_testing": {"number_of_workloads": 10, "unknown_query_probabilities": [0.0]}, "similar_workloads": false, "excluded_query_classes": [2, 17, 20], "unknown_queries": 0}, "comparison_algorithms": ["extend"], "budgets": {"training": null, "validation_and_testing": [500, 1000, 1500, 2500, 3500, 5000, 6500, 8000, 10000]}, "column_filters": {"TableNumRowsFilter": 10000}}
+
+Evaluated test workloads:
+Evaluated validation workloads:
+
+
