@@ -29,7 +29,7 @@ class WhatIfIndexCreation:
         del self.simulated_indexes[oid]
 
     def all_simulated_indexes(self):
-        statement = "select * from hypopg_list_indexes"
+        statement = "select * from hypopg_list_indexes()"
         indexes = self.db_connector.exec_fetch(statement, one=False)
         return indexes
 
