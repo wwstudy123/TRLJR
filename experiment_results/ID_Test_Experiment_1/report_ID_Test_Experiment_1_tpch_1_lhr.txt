@@ -1,58 +1,58 @@
 ##### Report for Experiment with ID: Test_Experiment_1 #####
 Description: Just a TPCH Test Experiment
 
-Start:                         2025-09-01 02:24:11.784250
-End:                           2025-09-01 02:24:11.784250
-Duration:                      0:09:30.921955
+Start:                         2025-11-25 07:41:03.368085
+End:                           2025-11-25 07:41:03.368085
+Duration:                      0:04:28.625009
 
-Start Training:                2025-09-01 02:24:57.185708
-End Training:                  2025-09-01 02:33:42.640307
-Duration Training:             0:08:45.454599
+Start Training:                2025-11-25 07:42:04.013520
+End Training:                  2025-11-25 07:45:31.965828
+Duration Training:             0:03:27.952308
 Moving Average model at step:  16000
-Mean reward model at step:     9000
-Git Hash:                      b'975120335801bf39e33253e300a99d3fc296102e\n'
+Mean reward model at step:     14000
+Git Hash:                      b'2a7014e694474da0ef0e78c5ae0c0b05cc51ed04\n'
 Number of features:            772
 Number of actions:             3376
 
 Unknown query probability: 0.0:
     Final mean performance test:
-        Final model:               57.38 ([66.94, 48.23, 45.24, 61.61, 52.66, 56.33, 67.88, 52.78, 60.2, 61.95])
-        Moving Average model:      57.38 ([66.94, 48.23, 45.26, 61.61, 52.66, 56.33, 67.88, 52.78, 60.2, 61.95])
-        Moving Average 3 model:    57.15 ([67.19, 48.3, 45.33, 61.71, 52.74, 55.05, 65.55, 52.91, 60.2, 62.51])
-        Best mean reward model:    57.19 ([66.97, 48.3, 46.7, 61.71, 52.75, 54.5, 65.35, 52.91, 60.2, 62.46])
+        Final model:               58.33 ([70.26, 52.19, 50.31, 62.05, 54.4, 51.07, 62.42, 53.58, 63.13, 63.87])
+        Moving Average model:      58.43 ([70.26, 52.19, 50.31, 63.11, 54.4, 51.07, 62.42, 53.58, 63.13, 63.87])
+        Moving Average 3 model:    58.44 ([70.26, 52.19, 50.31, 62.05, 54.4, 52.15, 62.43, 53.58, 63.13, 63.87])
+        Best mean reward model:    58.59 ([70.47, 51.59, 50.4, 63.17, 54.49, 52.07, 62.99, 53.68, 63.13, 63.95])
 
         Budgets:                   [3500, 3500, 1500, 3500, 2500, 8000, 8000, 5000, 500, 1000]
 
     Final mean performance validation:
-        Final model:               50.51 ([46.05, 54.24, 48.56, 55.16, 54.9, 51.05, 48.8, 54.08, 44.43, 47.83])
-        Moving Average model:      50.51 ([46.05, 54.24, 48.56, 55.16, 54.9, 51.05, 48.8, 54.09, 44.46, 47.83])
-        Moving Average 3 model:    50.56 ([46.08, 54.28, 48.61, 55.16, 54.97, 51.05, 48.85, 54.15, 44.55, 47.95])
-        Best mean reward model:    51.03 ([46.7, 55.73, 48.6, 55.16, 54.98, 51.05, 48.85, 55.5, 45.78, 47.95])
+        Final model:               55.43 ([54.24, 58.68, 53.61, 58.85, 59.62, 58.61, 53.6, 57.72, 47.75, 51.64])
+        Moving Average model:      55.43 ([54.24, 58.68, 53.61, 58.85, 59.62, 58.61, 53.6, 57.72, 47.75, 51.64])
+        Moving Average 3 model:    55.43 ([54.24, 58.68, 53.61, 58.85, 59.61, 58.61, 53.6, 57.72, 47.75, 51.64])
+        Best mean reward model:    55.37 ([54.28, 58.73, 53.44, 58.85, 59.68, 58.61, 53.64, 57.8, 47.86, 50.81])
 
         Budgets:                   [1500, 1500, 6500, 500, 2500, 500, 6500, 1500, 1500, 3500]
 
 
 Overall Test:
-        Final model:               57.38
-        Moving Average model:      57.38
-        Moving Average 3 model:    57.15
-        Best mean reward model:    57.19
+        Final model:               58.33
+        Moving Average model:      58.43
+        Moving Average 3 model:    58.44
+        Best mean reward model:    58.59
         Extend:                    nan
         DB2Adv:                    nan
 
 Overall Validation:
-        Final model:               50.51
-        Moving Average model:      50.51
-        Moving Average 3 model:    50.56
-        Best mean reward model:    51.03
+        Final model:               55.43
+        Moving Average model:      55.43
+        Moving Average 3 model:    55.43
+        Best mean reward model:    55.37
         Extend:                    nan
         DB2Adv:                    nan
 
 
 Evaluated episodes:            145
 Total steps taken:             15984
-CostEval cache hit ratio:      74.89 (169284 of 226044)
-Cost eval time (% of total):   0:02:54.100520 (33.13%)
+CostEval cache hit ratio:      74.52 (168451 of 226044)
+Cost eval time (% of total):   0:01:03.106877 (30.35%)
 
 
 Used configuration:
