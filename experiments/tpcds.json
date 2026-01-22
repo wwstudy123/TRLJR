@@ -57,5 +57,36 @@
   },
   "column_filters": {
     "TableNumRowsFilter": 10000
+  },
+  "materialized_views": {
+    "enabled": true,
+    "max_count": 8,
+    "max_index_width": 3,
+    "similarity_threshold": 0.6,
+    "representation_size": 50,
+    "value_encoding_dim": 10,
+    "hidden_dims": [128, 64],
+    "output_dim": 32,
+    "templates": [
+      {
+        "name": "mv_store_sales_summary",
+        "sql": "SELECT ss_store_sk, ss_item_sk, SUM(ss_quantity) as total_quantity, SUM(ss_sales_price) as total_sales FROM store_sales GROUP BY ss_store_sk, ss_item_sk"
+      },
+      {
+        "name": "mv_customer_demographics",
+        "sql": "SELECT cd_demo_sk, cd_gender, cd_marital_status, cd_education_status, COUNT(*) as count FROM customer_demographics GROUP BY cd_demo_sk, cd_gender, cd_marital_status, cd_education_status"
+      },
+      {
+        "name": "mv_date_dimension",
+        "sql": "SELECT d_date_sk, d_year, d_moy, d_dom, d_weekday FROM date_dim WHERE d_year >= 1998 AND d_year <= 2002"
+      },
+      {
+        "name": "mv_item_categories",
+        "sql": "SELECT i_item_sk, i_category, i_class, i_brand, COUNT(*) as count FROM item GROUP BY i_item_sk, i_category, i_class, i_brand"
+      }
+    ],
+    "rewrite_mappings": {
+      "SELECT ss_store_sk, SUM(ss_quantity) FROM store_sales GROUP BY ss_store_sk": "SELECT ss_store_sk, total_quantity FROM mv_store_sales_summary GROUP BY ss_store_sk"
+    }
   }
 }

@@ -115,3 +115,23 @@ class DatabaseConnector:
 
     def _drop_simulated_index(self, identifier):
         raise NotImplementedError
+
+    def create_materialized_view(self, mv):
+        """Create a materialized view"""
+        raise NotImplementedError
+
+    def refresh_materialized_view(self, mv):
+        """Refresh a materialized view with current data"""
+        raise NotImplementedError
+
+    def drop_materialized_view(self, mv):
+        """Drop a materialized view"""
+        raise NotImplementedError
+
+    def materialized_view_exists(self, mv_name):
+        """Check if a materialized view exists"""
+        raise NotImplementedError
+
+    def get_materialized_view_size(self, mv):
+        """Get the size of a materialized view in bytes"""
+        raise NotImplementedError

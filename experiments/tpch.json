@@ -59,5 +59,40 @@
   },
   "column_filters": {
     "TableNumRowsFilter": 10000
-  }
+  },
+  "materialized_views": {
+    "enabled": true,
+    "max_count": 5,
+    "observation_manager_type": "basic",
+    "reward_calculator_type": "basic",
+    "reward_config": {
+      "index_reward_weight": 0.5,
+      "mv_reward_weight": 0.5,
+      "storage_penalty": 0.01,
+      "synergy_weight": 0.1,
+      "performance_weight": 1.0,
+      "reward_scale": 100.0
+    },
+    "templates": [
+      {
+        "name": "mv_customer_orders",
+        "sql": "SELECT c_custkey, c_name, COUNT(o_orderkey) as order_count FROM customer c JOIN orders o ON c.c_custkey = o.o_custkey GROUP BY c_custkey, c_name",
+        "estimated_size": 1048576
+      },
+      {
+        "name": "mv_supplier_parts",
+        "sql": "SELECT s_suppkey, s_name, COUNT(ps_partkey) as part_count FROM supplier s JOIN partsupp ps ON s.s_suppkey = ps.ps_suppkey GROUP BY s_suppkey, s_name",
+        "estimated_size": 1048576
+      },
+      {
+        "name": "mv_lineitem_summary",
+        "sql": "SELECT l_orderkey, l_partkey, SUM(l_quantity) as total_quantity, SUM(l_extendedprice) as total_price FROM lineitem GROUP BY l_orderkey, l_partkey",
+        "estimated_size": 2097152
+      }
+    ],
+    "rewrite_mappings": {
+      "SELECT c_custkey, c_name FROM customer WHERE c_custkey = 1": "SELECT c_custkey, c_name FROM mv_customer_orders WHERE c_custkey = 1"
+    }
+  },
+  "use_action_masking": true
 }

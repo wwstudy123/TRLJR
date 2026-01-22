@@ -237,3 +237,75 @@ class PostgresDatabaseConnector(DatabaseConnector):
             WHERE datname = '{database_name}');"""
         result = self.exec_fetch(statement)
         return result[0]
+
+    def create_materialized_view(self, mv):
+        """Create a materialized view in PostgreSQL"""
+        # First create the materialized view with NO DATA to avoid long creation time
+        statement = f"CREATE MATERIALIZED VIEW {mv.name} AS {mv.definition_sql} WITH NO DATA;"
+        self.exec_only(statement)
+        
+        # Refresh to populate with data for accurate cost estimation
+        self.refresh_materialized_view(mv)
+        
+        # Create dependent indexes if any
+        for index in mv.dependent_indexes:
+            try:
+                # Create index on the materialized view
+                index_statement = (
+                    f"CREATE INDEX {index.index_idx()}_mv "
+                    f"ON {mv.name} ({index.joined_column_names()})"
+                )
+                self.exec_only(index_statement)
+            except Exception as e:
+                logging.warning(f"Failed to create index on MV {mv.name}: {e}")
+        
+        self.commit()
+        logging.debug(f"Created materialized view: {mv.name}")
+
+    def refresh_materialized_view(self, mv):
+        """Refresh a materialized view with current data"""
+        statement = f"REFRESH MATERIALIZED VIEW {mv.name};"
+        self.exec_only(statement)
+        self.commit()
+        logging.debug(f"Refreshed materialized view: {mv.name}")
+
+    def drop_materialized_view(self, mv):
+        """Drop a materialized view"""
+        statement = f"DROP MATERIALIZED VIEW IF EXISTS {mv.name} CASCADE;"
+        self.exec_only(statement)
+        self.commit()
+        logging.debug(f"Dropped materialized view: {mv.name}")
+
+    def materialized_view_exists(self, mv_name):
+        """Check if a materialized view exists"""
+        statement = f"""SELECT EXISTS (
+            SELECT 1
+            FROM pg_matviews
+            WHERE matviewname = '{mv_name}'
+            AND schemaname = 'public');"""
+        result = self.exec_fetch(statement)
+        return result[0]
+
+    def get_materialized_view_size(self, mv):
+        """Get the size of a materialized view in bytes"""
+        statement = f"SELECT pg_total_relation_size('{mv.name}');"
+        result = self.exec_fetch(statement)
+        size_bytes = result[0] if result[0] else 0
+        mv.set_size_estimate(size_bytes)
+        return size_bytes
+
+    def drop_all_materialized_views(self):
+        """Drop all materialized views in the public schema"""
+        logging.info("Dropping all materialized views")
+        statement = """
+            SELECT matviewname 
+            FROM pg_matviews 
+            WHERE schemaname = 'public'
+        """
+        mvs = self.exec_fetch(statement, one=False)
+        for mv in mvs:
+            mv_name = mv[0]
+            drop_statement = f"DROP MATERIALIZED VIEW IF EXISTS {mv_name} CASCADE;"
+            logging.debug(f"Dropping materialized view {mv_name}")
+            self.exec_only(drop_statement)
+        self.commit()
