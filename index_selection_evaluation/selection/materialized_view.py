@@ -8,6 +8,10 @@ class MaterializedView:
             raise ValueError("MaterializedView needs a name and definition SQL")
         self.name = name
         self.definition_sql = definition_sql
+        # Estimated cost to refresh the MV (e.g., based on base table write QPS)
+        self.refresh_cost_estimate = None
+        # Complexity score based on number of joins/aggregations
+        self.complexity_score = None
         # Store estimated size when available
         self.estimated_size = estimated_size
         # Optional indexes that can be created on this MV
@@ -27,7 +31,9 @@ class MaterializedView:
     def __eq__(self, other):
         if not isinstance(other, MaterializedView):
             return False
-        return self.name == other.name
+        return (self.name == other.name and
+                self.definition_sql.strip().lower() == other.definition_sql.strip().lower())
+
 
     def __hash__(self):
         return hash(self.name)

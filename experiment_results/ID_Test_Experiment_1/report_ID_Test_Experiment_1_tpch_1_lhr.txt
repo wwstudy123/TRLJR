@@ -1,62 +1,62 @@
 ##### Report for Experiment with ID: Test_Experiment_1 #####
 Description: Just a TPCH Test Experiment
 
-Start:                         2025-11-25 07:41:03.368085
-End:                           2025-11-25 07:41:03.368085
-Duration:                      0:04:28.625009
+Start:                         2026-02-20 05:31:00.208534
+End:                           2026-02-20 05:31:00.208534
+Duration:                      0:04:56.793490
 
-Start Training:                2025-11-25 07:42:04.013520
-End Training:                  2025-11-25 07:45:31.965828
-Duration Training:             0:03:27.952308
-Moving Average model at step:  16000
-Mean reward model at step:     14000
-Git Hash:                      b'2a7014e694474da0ef0e78c5ae0c0b05cc51ed04\n'
+Start Training:                2026-02-20 05:32:27.714995
+End Training:                  2026-02-20 05:35:56.975107
+Duration Training:             0:03:29.260112
+Moving Average model at step:  15000
+Mean reward model at step:     13000
+Git Hash:                      b'8afdaa9366296babb5b94818cf331f68cab04737\n'
 Number of features:            772
 Number of actions:             3376
 
 Unknown query probability: 0.0:
     Final mean performance test:
-        Final model:               58.33 ([70.26, 52.19, 50.31, 62.05, 54.4, 51.07, 62.42, 53.58, 63.13, 63.87])
-        Moving Average model:      58.43 ([70.26, 52.19, 50.31, 63.11, 54.4, 51.07, 62.42, 53.58, 63.13, 63.87])
-        Moving Average 3 model:    58.44 ([70.26, 52.19, 50.31, 62.05, 54.4, 52.15, 62.43, 53.58, 63.13, 63.87])
-        Best mean reward model:    58.59 ([70.47, 51.59, 50.4, 63.17, 54.49, 52.07, 62.99, 53.68, 63.13, 63.95])
+        Final model:               63.61 ([74.19, 60.31, 57.1, 64.28, 60.77, 61.48, 66.04, 57.5, 68.29, 66.16])
+        Moving Average model:      59.53 ([70.99, 53.21, 48.64, 64.07, 56.52, 53.23, 64.51, 55.19, 64.09, 64.87])
+        Moving Average 3 model:    59.36 ([71.02, 53.14, 48.5, 63.98, 56.51, 53.04, 63.93, 55.08, 63.54, 64.87])
+        Best mean reward model:    59.20 ([70.99, 53.13, 48.44, 63.97, 56.44, 51.54, 64.0, 55.12, 63.54, 64.85])
 
         Budgets:                   [3500, 3500, 1500, 3500, 2500, 8000, 8000, 5000, 500, 1000]
 
     Final mean performance validation:
-        Final model:               55.43 ([54.24, 58.68, 53.61, 58.85, 59.62, 58.61, 53.6, 57.72, 47.75, 51.64])
-        Moving Average model:      55.43 ([54.24, 58.68, 53.61, 58.85, 59.62, 58.61, 53.6, 57.72, 47.75, 51.64])
-        Moving Average 3 model:    55.43 ([54.24, 58.68, 53.61, 58.85, 59.61, 58.61, 53.6, 57.72, 47.75, 51.64])
-        Best mean reward model:    55.37 ([54.28, 58.73, 53.44, 58.85, 59.68, 58.61, 53.64, 57.8, 47.86, 50.81])
+        Final model:               65.18 ([66.88, 65.33, 71.19, 72.17, 66.05, 67.31, 65.53, 64.77, 55.42, 57.15])
+        Moving Average model:      56.75 ([53.25, 58.76, 55.85, 66.5, 60.1, 59.61, 54.53, 59.54, 48.03, 51.31])
+        Moving Average 3 model:    55.89 ([53.19, 58.66, 55.77, 59.5, 60.1, 58.72, 54.44, 59.42, 47.88, 51.2])
+        Best mean reward model:    55.86 ([53.17, 58.63, 55.74, 59.51, 60.01, 58.77, 54.39, 59.39, 47.81, 51.17])
 
         Budgets:                   [1500, 1500, 6500, 500, 2500, 500, 6500, 1500, 1500, 3500]
 
 
 Overall Test:
-        Final model:               58.33
-        Moving Average model:      58.43
-        Moving Average 3 model:    58.44
-        Best mean reward model:    58.59
+        Final model:               63.61
+        Moving Average model:      59.53
+        Moving Average 3 model:    59.36
+        Best mean reward model:    59.20
         Extend:                    nan
         DB2Adv:                    nan
 
 Overall Validation:
-        Final model:               55.43
-        Moving Average model:      55.43
-        Moving Average 3 model:    55.43
-        Best mean reward model:    55.37
+        Final model:               65.18
+        Moving Average model:      56.75
+        Moving Average 3 model:    55.89
+        Best mean reward model:    55.86
         Extend:                    nan
         DB2Adv:                    nan
 
 
 Evaluated episodes:            145
 Total steps taken:             15984
-CostEval cache hit ratio:      74.52 (168451 of 226044)
-Cost eval time (% of total):   0:01:03.106877 (30.35%)
+CostEval cache hit ratio:      74.93 (169381 of 226044)
+Cost eval time (% of total):   0:01:00.716258 (29.01%)
 
 
 Used configuration:
-{"id": "Test_Experiment_1", "description": "Just a TPCH Test Experiment", "gym_version": 1, "timesteps": 16000, "database": "tpch_1_lhr", "random_seed": 60, "parallel_environments": 1, "pickle_cost_estimation_caches": false, "action_manager": "MultiColumnIndexActionManager", "observation_manager": "SingleColumnIndexPlanEmbeddingObservationManagerWithCost", "reward_calculator": "RelativeDifferenceRelativeToStorageReward", "max_steps_per_episode": 200, "validation_frequency": 1000, "filter_utilized_columns": false, "max_index_width": 3, "reenable_indexes": false, "result_path": "experiment_results", "workload_embedder": {"type": "PlanEmbedderLSIBOW", "representation_size": 50}, "rl_algorithm": {"algorithm": "PPO2", "stable_baselines_version": 2, "gamma": 0.5, "policy": "MlpPolicy", "model_architecture": {"net_arch": [{"vf": [256, 256], "pi": [256, 256]}]}, "args": {"n_steps": 64}}, "workload": {"benchmark": "TPCH", "path": "./experiment_results/workloads/gen_tpch/train_workloads1.pickle", "scale_factor": 1, "size": 14, "varying_frequencies": true, "training_instances": 10000, "validation_testing": {"number_of_workloads": 10, "unknown_query_probabilities": [0.0]}, "similar_workloads": false, "excluded_query_classes": [2, 17, 20], "unknown_queries": 0}, "comparison_algorithms": ["extend"], "budgets": {"training": null, "validation_and_testing": [500, 1000, 1500, 2500, 3500, 5000, 6500, 8000, 10000]}, "column_filters": {"TableNumRowsFilter": 10000}}
+{"id": "Test_Experiment_1", "description": "Just a TPCH Test Experiment", "gym_version": 1, "timesteps": 16000, "database": "tpch_1_lhr", "random_seed": 60, "parallel_environments": 1, "pickle_cost_estimation_caches": false, "action_manager": "MultiColumnIndexActionManager", "observation_manager": "SingleColumnIndexPlanEmbeddingObservationManagerWithCost", "reward_calculator": "RelativeDifferenceRelativeToStorageReward", "max_steps_per_episode": 200, "validation_frequency": 1000, "filter_utilized_columns": false, "max_index_width": 3, "reenable_indexes": false, "result_path": "experiment_results", "workload_embedder": {"type": "PlanEmbedderLSIBOW", "representation_size": 50}, "rl_algorithm": {"algorithm": "PPO2", "stable_baselines_version": 2, "gamma": 0.5, "policy": "MlpPolicy", "model_architecture": {"net_arch": [{"vf": [256, 256], "pi": [256, 256]}]}, "args": {"n_steps": 64}}, "workload": {"benchmark": "TPCH", "path": "./experiment_results/workloads/gen_tpch/train_workloads1.pickle", "scale_factor": 1, "size": 14, "varying_frequencies": true, "training_instances": 10000, "validation_testing": {"number_of_workloads": 10, "unknown_query_probabilities": [0.0]}, "similar_workloads": false, "excluded_query_classes": [2, 17, 20], "unknown_queries": 0}, "comparison_algorithms": ["extend"], "budgets": {"training": null, "validation_and_testing": [500, 1000, 1500, 2500, 3500, 5000, 6500, 8000, 10000]}, "column_filters": {"TableNumRowsFilter": 10000}, "materialized_views": {"enabled": true, "max_count": 5, "observation_manager_type": "basic", "reward_calculator_type": "basic", "reward_config": {"index_reward_weight": 0.5, "mv_reward_weight": 0.5, "storage_penalty": 0.01, "synergy_weight": 0.1, "performance_weight": 1.0, "reward_scale": 100.0}, "templates": [{"name": "mv_customer_orders", "sql": "SELECT c_custkey, c_name, COUNT(o_orderkey) as order_count FROM customer c JOIN orders o ON c.c_custkey = o.o_custkey GROUP BY c_custkey, c_name", "estimated_size": 1048576}, {"name": "mv_supplier_parts", "sql": "SELECT s_suppkey, s_name, COUNT(ps_partkey) as part_count FROM supplier s JOIN partsupp ps ON s.s_suppkey = ps.ps_suppkey GROUP BY s_suppkey, s_name", "estimated_size": 1048576}, {"name": "mv_lineitem_summary", "sql": "SELECT l_orderkey, l_partkey, SUM(l_quantity) as total_quantity, SUM(l_extendedprice) as total_price FROM lineitem GROUP BY l_orderkey, l_partkey", "estimated_size": 2097152}], "rewrite_mappings": {"SELECT c_custkey, c_name FROM customer WHERE c_custkey = 1": "SELECT c_custkey, c_name FROM mv_customer_orders WHERE c_custkey = 1"}}, "use_action_masking": true}
 
 Evaluated test workloads:
 Evaluated validation workloads:

@@ -7,3 +7,4 @@ register(id="DB-v2", entry_point="gym_db.envs:DBEnvV2")
 # DRLindex: Deep Reinforcement Learning Index Advisor for a Cluster Databse by Sadri et al.
 # Action masking is only used to prevent repeated indexing actions.
 register(id="DB-v3", entry_point="gym_db.envs:DBEnvV3")
+register(id="DB-hybrid-v2", entry_point="gym_db.envs:HybridDBEnv")

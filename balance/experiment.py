@@ -37,6 +37,7 @@ class Experiment(object):
         self.id = self.config["id"]
         self.cmp_runtime = datetime.timedelta(0)
         self.dataset_size = None
+        self.require_pg_ivm = self.config.get("require_pg_ivm", False)
         self.model = None
         self.Smodel_1 = None
         self.Smodel_2 = None
@@ -77,6 +78,10 @@ class Experiment(object):
             filter_utilized_columns=self.config["filter_utilized_columns"],experiment_folder_path =self.experiment_folder_path
         )
         self._assign_budgets_to_workloads()
+        # Verify pg_ivm availability before proceeding
+        if self.require_pg_ivm:
+            self._verify_pg_ivm_availability()
+
         self._pickle_workloads()
 
         self.globally_indexable_columns = self.workload_generator.globally_indexable_columns
@@ -93,6 +98,12 @@ class Experiment(object):
         self.action_storage_consumptions = utils.predict_index_sizes(
             self.globally_indexable_columns_flat, self.schema.database_name
         )#
+
+        # Generate materialized view candidates and perform joint pruning
+        if self.config.get("enable_hybrid_mode", False):
+            self.mv_candidates = self._generate_materialized_view_candidates(
+                self.globally_indexable_columns_flat
+            )
 
         if "workload_embedder" in self.config:
             workload_embedder_class = getattr(
@@ -111,7 +122,38 @@ class Experiment(object):
             for workloads in self.workload_generator.wl_validation:
                 self.multi_validation_wl.extend(self.rnd.sample(workloads, min(7, len(workloads))))
 
+    def _verify_pg_ivm_availability(self):
+        """Verify that pg_ivm is installed and available in the database."""
+        db_connector = PostgresDatabaseConnector(self.schema.database_name, autocommit=True)
+        try:
+            # Attempt to create the extension if it doesn't exist
+            db_connector.exec_only("CREATE EXTENSION IF NOT EXISTS pg_ivm;")
+            # Check if pg_ivm is enabled
+            result = db_connector.exec_one("SELECT ivm_is_enabled();")
+            if result is None or result[0] is not True:
+                raise RuntimeError("pg_ivm is not enabled or properly installed.")
+        except Exception as e:
+            raise RuntimeError(f"pg_ivm is required but not available: {e}")
+        finally:
+            db_connector.close()
 
+    def _generate_materialized_view_candidates(self, index_candidates):
+        """Generate materialized view candidates and perform joint pruning."""
+        from balance.materialized_view_miner import MaterializedViewMiner  # Import here to avoid circular dependencies
+
+        mv_miner = MaterializedViewMiner(
+            database_name=self.schema.database_name,
+            workload=self.workload_generator.query_texts,
+            min_support=self.config["materialized_view_config"]["min_support"],
+            min_confidence=self.config["materialized_view_config"].get("min_confidence", 0.6),
+        )
+
+        mv_candidates = mv_miner.mine_frequent_view_candidates(index_candidates)
+        # Estimate refresh costs (replace with actual logic)
+        for mv in mv_candidates:
+            mv.refresh_cost_estimate = self.rnd.uniform(1.0, 10.0)  # Placeholder
+
+        return mv_candidates
        
 
     def _assign_budgets_to_workloads(self):
@@ -626,6 +668,11 @@ class Experiment(object):
                     "ids": self.config["id"],
                 },
             )
+            # Automatically load pg_ivm extension if required
+            if self.require_pg_ivm:
+                db_connector = PostgresDatabaseConnector(self.schema.database_name, autocommit=True)
+                db_connector.exec_only("CREATE EXTENSION IF NOT EXISTS pg_ivm;")
+                db_connector.close()
             return env
 
         self.set_random_seed(self.config["random_seed"])
